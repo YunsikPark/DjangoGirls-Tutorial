@@ -5,9 +5,39 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>make the django View</title>
+    <title>Django Girls blog</title>
+    <style>
+        a {color:skyblue}
+    </style>
 </head>
 <body>
-    <h1>Post List</h1>
+    <div>
+        <h1><a href="#">Django Girls Blog</a></h1>
+        <h3>{{title}}</h3>
+    </div>
+
+    <div>
+        {% for post in posts %}
+        <div>
+            <p style="color:grey; text-align:right; font-size:10px;">published: {{post.published_date}}</p>
+            <h3 style="color:skyblue">{{post.title}}</h3>
+            <p style="color:pink">{{post.text}}</p>
+            <hr>
+        </div>
+        {% endfor %}
+
+    </div>
+
+    <div>
+        <p>published: 14.06.2014, 12:14</p>
+        <h2><a href="#">My first post</a></h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi architecto eius et non praesentium. Adipisci consectetur cumque dicta doloribus ea earum eos, est ex illo illum inventore itaque labore magnam molestiae nemo qui, quibusdam reiciendis rem sint soluta tenetur voluptatibus voluptatum? Adipisci esse ipsa rerum soluta voluptatem. Beatae, magni perferendis.</p>
+    </div>
+
+    <div>
+        <p>published: 14.06.2014, 12:14</p>
+        <h2><a href="#">My second post</a></h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet inventore non porro reprehenderit. Ad aliquam aperiam blanditiis corporis dolore eius ex hic itaque labore laudantium molestiae, nam numquam odio praesentium quaerat quasi, quis repellat repellendus similique tempore tenetur ullam voluptatem voluptates. Eligendi, ipsa, quam. Adipisci illum nam possimus reiciendis totam?</p>
+    </div>
 </body>
 </html>
