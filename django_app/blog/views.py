@@ -33,3 +33,8 @@ def post_detail(request, pk):
     # return HttpResponse(f)
     return render(request, 'blog/post_detail.html', context = context)
 
+def post_create(request):
+    context = {
+
+    }
+    return render(request, 'blog/post_create.html',)

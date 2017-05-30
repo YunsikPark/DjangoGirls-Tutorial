@@ -29,5 +29,6 @@ urlpatterns = [
     # url(r'^post/\d+/$', views.post_detail,)
     # views.post_detail(pk=<num>)
     url(r'^post/(?P<pk>\d+)/$', views.post_detail, name='post_detail'),
+    url(r'^post/create/$', views.post_create, name='post_create')
 ]
 
