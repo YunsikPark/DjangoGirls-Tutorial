@@ -28,4 +28,8 @@ def post_detail(request, pk):
     context = {
         'post': Post.objects.get(pk=pk)
     }
+    # with open('templates/blog/post_detail.html') as opentemplate:
+    #     f = opentemplate.read()
+    # return HttpResponse(f)
     return render(request, 'blog/post_detail.html', context = context)
+

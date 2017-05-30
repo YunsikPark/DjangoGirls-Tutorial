@@ -1,0 +1,17 @@
+<!-- blog/base.html을 확장하여
+제목 (input type text)
+내용 (textarea)
+작성버튼 (button)
+을 갖는 html을 작성 -->
+
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+<div class="post-create">
+  <form action="">
+    <textarea name="title1" rows="8" cols="80"></textarea>
+  </form>
+
+</div>
+{% endblock %}
