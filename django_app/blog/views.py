@@ -1,20 +1,23 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.utils import timezone
-
+from django.contrib.auth import get_user_model
+User = get_user_model()
 from .models import Post
 
+from .forms import PostCreateForm
 
 def post_list(request):
-    # posts 변수에 ORM을 이용해서 전체 Post의 리스트(쿼리셋)를 대입
-    # posts = Post.objects.all()
+    # posts 변수에 ORM을 이용해서 전 Post의 리스트(쿼리셋)를 대입
+    #post 정렬하기
+    posts = Post.objects.order_by('-created_date')
 
     # posts 변수에 ORM을 사용해서 전달할 쿼리셋이
     # posts의 published_date가 timezone.now()보다
     # 작은 갓을 가질 때만 해당하도록 필터를 사용한다.
-    posts =Post.objects.filter(
-        published_date__lte = timezone.now()
-    )
+    # posts =Post.objects.filter(
+    #     published_date__lte = timezone.now()
+    # )
     context = {
         'title' : 'PostList from post_list view',
         'posts' : posts,
@@ -34,7 +37,30 @@ def post_detail(request, pk):
     return render(request, 'blog/post_detail.html', context = context)
 
 def post_create(request):
-    context = {
+    if request.method == 'GET':
+        form = PostCreateForm()
+        context = {
+            'form':form,
+        }
+        return render(request, 'blog/post_create.html',context)
+    elif request.method == 'POST':
+        # Form클래스의 생성자에 POST데이터를 전달하여 Form 인스턴스를 생성
+        form = PostCreateForm(request.POST)
+        # Form인스턴스의 유효성을 검사하는 is_valid메서드
+        if form.is_valid():
+            title = form.cleaned_data['title']
+            text = form.cleaned_data['text']
+            user = User.objects.first()
+            post = Post.objects.create(
+                author=user,
+                title = title,
+                text = text
+            )
+            # return HttpResponse(post)
+            return redirect('post_detail', pk=post.pk)
 
-    }
-    return render(request, 'blog/post_create.html',)
+        else:
+            context = {
+                'form':form,
+            }
+            return render(request, 'blog/post_create.html', context)

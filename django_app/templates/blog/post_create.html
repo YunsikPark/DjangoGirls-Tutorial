@@ -1,17 +1,21 @@
-<!-- blog/base.html을 확장하여
-제목 (input type text)
-내용 (textarea)
-작성버튼 (button)
-을 갖는 html을 작성 -->
 
 {% extends 'blog/base.html' %}
-
 {% block content %}
+<a href="{% url 'post_list' %}" class="btn btn-primary pull-right">List</a>
 
-<div class="post-create">
-  <form action="">
-    <textarea name="title1" rows="8" cols="80"></textarea>
-  </form>
+<form action="/post/create/" method="post">
+  {% csrf_token %}
 
+  <!-- {{form}} -->
+
+  {% for field in form %}
+  <div class="form-group">
+    {{field.label_tag}}
+    {{field}}
+  </div>
+  {% endfor %}
+
+  <button type="submit" class="btn btn-primary btn-block">작성</button>
+</form>
 </div>
 {% endblock %}

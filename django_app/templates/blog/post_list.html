@@ -1,8 +1,10 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
+<a href="{% url 'post_create' %}" class="btn btn-primary pull-right">Add Post</a>
 <div class="post-list">
   {% for post in posts %}
+  
   <div class="post">
       <h4><a href="{% url 'post_detail' pk=post.pk %}">{{post.title}}</a></h4>
       <p class="text-right"><small>published: {{post.published_date}}</small></p>
