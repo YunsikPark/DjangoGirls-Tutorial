@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <!doctype html>
 <html lang="ko">
 <head>
@@ -6,26 +7,28 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Django Girls blog</title>
-    <style>
-        a {color:skyblue}
-    </style>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <div>
-        <h1><a href="#">Django Girls Blog</a></h1>
-        <h3>{{title}}</h3>
-    </div>
-
-    <div>
-        {% for post in posts %}
+  <div class="container">
+      <div class="header">
         <div>
-            <p style="color:grey; text-align:right; font-size:10px;">published: {{post.published_date}}</p>
-            <h3 style="color:skyblue">{{post.title}}</h3>
-            <p style="color:pink">{{post.text}}</p>
-            <hr>
+          <h1><a href="#">Django Girls Blog</a></h1>
+          <h4>{{title}}</h4>
         </div>
-        {% endfor %}
+      </div>
 
+    <div>
+        <div class="post-list">
+          {% for post in posts %}
+          <div class="post">
+              <h4><a href="">{{post.title}}</a></h4>
+              <p class="text-right">published: {{post.published_date}}</p>
+              <p>{{post.text}}</p>
+          </div>
+          {% endfor %}
+        </div>
     </div>
 
     <div>
@@ -33,11 +36,12 @@
         <h2><a href="#">My first post</a></h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi architecto eius et non praesentium. Adipisci consectetur cumque dicta doloribus ea earum eos, est ex illo illum inventore itaque labore magnam molestiae nemo qui, quibusdam reiciendis rem sint soluta tenetur voluptatibus voluptatum? Adipisci esse ipsa rerum soluta voluptatem. Beatae, magni perferendis.</p>
     </div>
-
     <div>
         <p>published: 14.06.2014, 12:14</p>
         <h2><a href="#">My second post</a></h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet inventore non porro reprehenderit. Ad aliquam aperiam blanditiis corporis dolore eius ex hic itaque labore laudantium molestiae, nam numquam odio praesentium quaerat quasi, quis repellat repellendus similique tempore tenetur ullam voluptatem voluptates. Eligendi, ipsa, quam. Adipisci illum nam possimus reiciendis totam?</p>
     </div>
+
+  </div>
 </body>
 </html>
