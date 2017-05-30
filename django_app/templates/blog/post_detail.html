@@ -6,6 +6,8 @@
       <h4><a href="">{{post.title}}</a></h4>
       <p class="text-right">published: {{post.published_date}}</p>
       <p>{{post.text}}</p>
+      <a href="{% url 'post_modify' pk=post.pk %}" class="btn btn-primary pull-right">수정</a>
+
   </div>
 </div>
 {% endblock %}
