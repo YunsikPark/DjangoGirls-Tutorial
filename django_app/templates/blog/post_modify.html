@@ -1,5 +1,6 @@
 
 {% extends 'blog/base.html' %}
+
 {% block content %}
 <a href="{% url 'post_list' %}" class="btn btn-primary pull-right">List</a>
 
@@ -7,7 +8,7 @@
   {% csrf_token %}
 
   <input type="text" name="title" value="{{ post.title }}">
-  <textarea name="text" id="" cols="30" rows="10">{{post.text}}</textarea>
+  <textarea name="text" id="" cols="30" rows="10">{{ post.text }}</textarea>
 
   <!-- {% for field in form %}
   <div class="form-group">
